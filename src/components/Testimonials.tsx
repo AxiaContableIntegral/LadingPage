@@ -36,7 +36,7 @@ export function Testimonials() {
         <div className="absolute inset-0 bg-brand-orange/5 opacity-50 mix-blend-overlay pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-brand-orange/10 blur-[100px] rounded-full pointer-events-none" />
 
-        <p className="relative z-10 mx-auto max-w-4xl px-5 text-center text-sm font-light tracking-wide text-white sm:text-lg md:text-2xl lg:text-3xl whitespace-nowrap">
+        <p className="relative z-10 mx-auto max-w-4xl px-5 text-center text-base font-light tracking-wide text-white sm:text-lg md:text-2xl lg:text-3xl sm:whitespace-nowrap text-balance leading-relaxed">
           <span className="font-bold text-brand-orange">AxiA</span> significa “valor” en griego, y eso define nuestra esencia.
         </p>
       </div>
