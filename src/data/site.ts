@@ -1,67 +1,54 @@
 export const navLinks = [
-{ label: 'Inicio', href: '#inicio' },
-{ label: 'Servicios', href: '#servicios' },
-{ label: 'Nosotros', href: '#nosotros' },
-{ label: 'Contacto', href: '#contacto' }];
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Etapas', href: '#etapas' },
+  { label: 'Nosotros', href: '#nosotros' },
+  { label: 'Testimonios', href: '#testimonios' }
+];
 
 
 export type Service = {
   id: string;
   title: string;
+  subtitle: string;
   description: string;
-  bullets: string[];
 };
 
 export const services: Service[] = [
-{
-  id: 'contabilidad',
-  title: 'Contabilidad',
-  description:
-  'Registración, balances y estados contables al día para que tomes decisiones sobre números confiables.',
-  bullets: ['Balances y cierres', 'Conciliaciones bancarias', 'Reportes de gestión']
-},
-{
-  id: 'impuestos',
-  title: 'Impuestos',
-  description:
-  'Planificación y presentación de tus obligaciones nacionales y provinciales, sin sobresaltos ni intereses.',
-  bullets: ['IVA y Ganancias', 'Ingresos Brutos', 'Planificación fiscal']
-},
-{
-  id: 'sueldos',
-  title: 'Liquidación de Sueldos',
-  description:
-  'Nóminas, cargas sociales y legajos gestionados con precisión y dentro de cada vencimiento.',
-  bullets: ['Recibos y F.931', 'Altas y bajas', 'Convenios colectivos']
-},
-{
-  id: 'auditoria',
-  title: 'Auditoría',
-  description:
-  'Revisión independiente de tus procesos y estados financieros para detectar riesgos antes que te encuentren.',
-  bullets: ['Auditoría de estados', 'Control interno', 'Informes especiales']
-}];
-
-
-export const reasons = [
-{
-  title: 'Un equipo, todas tus obligaciones',
-  text: 'Contabilidad, impuestos, sueldos y auditoría bajo una misma coordinación. Un solo interlocutor, cero información perdida entre estudios.'
-},
-{
-  title: 'Respuesta en menos de 24 horas',
-  text: 'Cada cliente tiene un contador asignado que conoce su empresa y responde consultas por el canal que prefieras.'
-},
-{
-  title: 'Mirada estratégica, no solo cumplimiento',
-  text: 'Además de cumplir los vencimientos, traducimos tus números en decisiones: rentabilidad, costos y proyección de caja.'
-}];
+  {
+    id: 'asesoramiento',
+    title: 'Asesoramiento Integral',
+    subtitle: 'Un socio estratégico en tu crecimiento',
+    description:
+      'Te acompañamos en la organización integral de tu negocio, brindando asesoramiento y claridad para una gestión eficiente y una posición competitiva sostenible.'
+  },
+  {
+    id: 'impositiva',
+    title: 'Área Impositiva',
+    subtitle: 'Impuestos en orden, negocio en movimiento',
+    description:
+      'Diseñamos estrategias fiscales inteligentes para optimizar tu gestión impositiva, cuidar tu rentabilidad y mantener tus obligaciones siempre al día.'
+  },
+  {
+    id: 'contable',
+    title: 'Área Contable',
+    subtitle: 'Convertimos tus números en decisiones',
+    description:
+      'Ordenamos tu información contable para brindarte una visión real, decisiones acertadas y cumplimiento seguro. Transformamos datos en estrategia.'
+  },
+  {
+    id: 'capital-humano',
+    title: 'Área Capital Humano',
+    subtitle: 'Tu equipo, siempre en regla',
+    description:
+      'Gestionamos sueldos, cargas sociales y documentación laboral, garantizando cumplimiento y confianza en tu equipo.'
+  }];
 
 
 export const stats = [
-{ value: '+15', label: 'años de trayectoria' },
-{ value: '+180', label: 'empresas asesoradas' },
-{ value: '100%', label: 'vencimientos en fecha' }];
+  { value: '+7', label: 'años de trayectoria' },
+  { value: '+10', label: 'empresas asesoradas' },
+  { value: '100%', label: 'vencimientos en fecha' }];
 
 
 export type Testimonial = {
@@ -73,30 +60,30 @@ export type Testimonial = {
 };
 
 export const testimonials: Testimonial[] = [
-{
-  id: 'nordelta',
-  quote:
-  'Llegamos con tres años de balances atrasados y una inspección encima. En seis meses Axia ordenó toda la contabilidad, negoció el plan de pagos y hoy cerramos cada mes en fecha. Es el único proveedor que nunca tuve que perseguir.',
-  name: 'Mariana Rosetti',
-  role: 'Socia gerente, Nordelta Logística',
-  initials: 'MR'
-},
-{
-  id: 'vertice',
-  quote:
-  'La liquidación de sueldos de 40 empleados dejó de ser un problema de fin de mes. Todo llega revisado y a tiempo.',
-  name: 'Diego Almada',
-  role: 'Director, Vértice Construcciones',
-  initials: 'DA'
-},
-{
-  id: 'tramo',
-  quote:
-  'Nos explican los números en un idioma que entendemos. Por primera vez tomamos decisiones de precios con datos reales.',
-  name: 'Lucía Ferreyra',
-  role: 'Fundadora, Tramo Estudio',
-  initials: 'LF'
-}];
+  {
+    id: 'smash',
+    quote:
+      'El equipo de AXIA es impecable. Agustín y su gente nos ordenaron todo con una claridad y una rapidez impresionante. Hoy trabajamos con mucha más tranquilidad, entendiendo exactamente dónde estamos parados y qué decisiones conviene tomar en cada momento. Su acompañamiento nos dio seguridad, estructura y una forma de gestionar el negocio mucho más profesional. Realmente marcan la diferencia.',
+    name: 'Franco Indragoli',
+    role: 'CEO de Smash Club',
+    initials: 'FI'
+  },
+  {
+    id: 'jd1',
+    quote:
+      'AXIA nos cambió la manera de gestionar el negocio. Agustín y su equipo tomaron nuestra información, la ordenaron con una claridad increíble y nos dieron procesos que hoy usamos todos los días. Pasamos de la incertidumbre a tener un panorama preciso y decisiones mucho más seguras. Su forma de trabajar transmite profesionalismo, compromiso y una tranquilidad que vale oro. Son un verdadero aliado.',
+    name: 'John Doe',
+    role: 'CEO',
+    initials: 'JD'
+  },
+  {
+    id: 'jd2',
+    quote:
+      'La experiencia con AXIA fue excepcional. Agustín y su equipo detectaron rápido lo que necesitábamos y nos organizaron todo con metodología y transparencia. Hoy entendemos mejor nuestros números, planificamos con más criterio y sentimos respaldo en cada decisión importante. La combinación de su técnica, su cercanía y su velocidad de respuesta hace que realmente marquen la diferencia.',
+    name: 'John Doe',
+    role: 'CEO',
+    initials: 'JD'
+  }];
 
 
 export type Client = { name: string; src: string };
@@ -113,8 +100,8 @@ export const clients: Client[] = [
 
 export const contactInfo = {
   address: 'Av. Corrientes 1250, Piso 6 — CABA, Argentina',
-  phone: '+54 11 4321 5678',
-  phoneHref: 'tel:+541143215678',
-  email: 'contacto@axiacontableintegral.com',
+  phone: '+54 2622 68-5201',
+  phoneHref: 'https://wa.me/542622685201',
+  email: 'agustinh@axiacontableintegral.com',
   hours: 'Lunes a viernes, 9:00 a 18:00 h'
 };

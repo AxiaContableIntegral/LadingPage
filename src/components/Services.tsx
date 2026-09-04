@@ -1,12 +1,12 @@
 import React from 'react';
-import { BookOpenIcon, ReceiptTextIcon, UsersIcon, SearchCheckIcon, CheckIcon } from 'lucide-react';
+import { BookOpenIcon, ReceiptTextIcon, UsersIcon, BriefcaseIcon } from 'lucide-react';
 import { services } from '../data/site';
 
 const icons: Record<string, React.ComponentType<{className?: string;}>> = {
-  contabilidad: BookOpenIcon,
-  impuestos: ReceiptTextIcon,
-  sueldos: UsersIcon,
-  auditoria: SearchCheckIcon
+  asesoramiento: BriefcaseIcon,
+  impositiva: ReceiptTextIcon,
+  contable: BookOpenIcon,
+  'capital-humano': UsersIcon
 };
 
 export function Services() {
@@ -33,16 +33,9 @@ export function Services() {
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-brand-navySoft text-brand-navy transition-colors duration-200 ease-out group-hover:bg-brand-navy group-hover:text-white">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
-                <h3 className="mt-6 text-lg font-bold text-brand-navyDark">{service.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{service.description}</p>
-                <ul className="mt-auto space-y-2 pt-6">
-                  {service.bullets.map((bullet) =>
-                  <li key={bullet} className="flex items-start gap-2 text-sm text-slate-700">
-                      <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-orange" aria-hidden="true" />
-                      {bullet}
-                    </li>
-                  )}
-                </ul>
+                <h3 className="mt-6 text-xl font-bold text-brand-navyDark text-balance">{service.title}</h3>
+                <span className="mt-1 block text-sm font-semibold text-brand-orange text-balance">{service.subtitle}</span>
+                <p className="mt-4 text-sm leading-relaxed text-slate-600 text-pretty">{service.description}</p>
               </li>);
 
           })}

@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Clients } from './components/Clients';
 import { Services } from './components/Services';
+import { BusinessStages } from './components/BusinessStages';
 import { WhyUs } from './components/WhyUs';
 import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
@@ -16,6 +17,7 @@ export function App() {
         <Hero />
         <Clients />
         <Services />
+        <BusinessStages />
         <WhyUs />
         <Testimonials />
         <Contact />

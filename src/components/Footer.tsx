@@ -1,12 +1,10 @@
 import React from 'react';
-import { LinkedinIcon, InstagramIcon, FacebookIcon } from 'lucide-react';
+import { InstagramIcon } from 'lucide-react';
 import { Logo } from './Logo';
 import { navLinks, services, contactInfo } from '../data/site';
 
 const socials = [
-{ label: 'LinkedIn', href: '#', Icon: LinkedinIcon },
-{ label: 'Instagram', href: '#', Icon: InstagramIcon },
-{ label: 'Facebook', href: '#', Icon: FacebookIcon }];
+{ label: 'Instagram', href: 'https://www.instagram.com/axia.contableintegral?igsi=MXEyeWY1NzgweWxhbw==', Icon: InstagramIcon }];
 
 
 export function Footer() {
