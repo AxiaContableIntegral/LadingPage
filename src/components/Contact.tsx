@@ -3,8 +3,8 @@ import { MapPinIcon, MailIcon, ClockIcon } from 'lucide-react';
 import { ContactForm } from './ContactForm';
 import { contactInfo } from '../data/site';
 
-const MAP_SRC =
-'https://www.google.com/maps?q=Av.%20Corrientes%201250,%20CABA,%20Argentina&output=embed';
+const getMapSrc = (address: string) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 
 export function Contact() {
   return (
@@ -49,11 +49,10 @@ export function Contact() {
             <div className="overflow-hidden rounded-lg border border-white/15">
               <iframe
                 title="Mapa con la ubicación del estudio"
-                src={MAP_SRC}
+                src={getMapSrc(contactInfo.address)}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-64 w-full border-0 lg:h-72" />
-              
             </div>
           </div>
         </div>

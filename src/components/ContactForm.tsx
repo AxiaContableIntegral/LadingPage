@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CheckCircle2Icon, Loader2Icon, SendIcon } from 'lucide-react';
+import { AlertCircleIcon, CheckCircle2Icon, Loader2Icon, SendIcon } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 type Fields = {
   nombre: string;
@@ -15,39 +16,76 @@ const empty: Fields = { nombre: '', email: '', telefono: '', mensaje: '' };
 function validate(values: Fields): Errors {
   const errors: Errors = {};
   if (!values.nombre.trim()) errors.nombre = 'Ingresá tu nombre.';
-  if (!values.email.trim()) errors.email = 'Ingresá tu email.';else
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email)) errors.email = 'El email no parece válido.';
+  if (!values.email.trim()) errors.email = 'Ingresá tu email.';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email)) errors.email = 'El email no parece válido.';
   if (values.telefono.trim() && values.telefono.trim().length < 6)
-  errors.telefono = 'Ingresá un teléfono válido.';
+    errors.telefono = 'Ingresá un teléfono válido.';
   if (values.mensaje.trim().length < 10) errors.mensaje = 'Contanos un poco más (mínimo 10 caracteres).';
   return errors;
 }
 
 const inputClass =
-'w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-colors duration-150 ease-out focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20';
+  'w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-colors duration-150 ease-out focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/20';
 
 export function ContactForm() {
   const [values, setValues] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const update = (field: keyof Fields) => (
-  event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-  {
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setValues((prev) => ({ ...prev, [field]: event.target.value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
+    if (errorMessage) setErrorMessage(null);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setErrorMessage(null);
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.warn('EmailJS keys are missing in .env');
+      setErrorMessage(
+        'Faltan configurar las claves de EmailJS en el archivo .env del proyecto.'
+      );
+      return;
+    }
+
     setStatus('sending');
-    window.setTimeout(() => {
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          nombre: values.nombre,
+          name: values.nombre,
+          email: values.email,
+          telefono: values.telefono || 'No especificado',
+          phone: values.telefono || 'No especificado',
+          mensaje: values.mensaje,
+          message: values.mensaje,
+        },
+        publicKey
+      );
       setStatus('sent');
       setValues(empty);
-    }, 900);
+    } catch (err) {
+      console.error('Error al enviar con EmailJS:', err);
+      setErrorMessage(
+        'Hubo un problema al enviar tu consulta. Por favor intentá nuevamente o contactanos directamente por WhatsApp.'
+      );
+      setStatus('idle');
+    }
   };
 
   if (status === 'sent') {
@@ -60,13 +98,15 @@ export function ContactForm() {
         </p>
         <button
           type="button"
-          onClick={() => setStatus('idle')}
+          onClick={() => {
+            setStatus('idle');
+            setErrorMessage(null);
+          }}
           className="mt-6 text-sm font-semibold text-brand-navy transition-colors duration-150 ease-out hover:text-brand-orange">
-          
           Enviar otra consulta
         </button>
-      </div>);
-
+      </div>
+    );
   }
 
   return (
@@ -140,6 +180,13 @@ export function ContactForm() {
           </Field>
         </div>
       </div>
+
+      {errorMessage && (
+        <div className="mt-5 flex items-start gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />
+          <p>{errorMessage}</p>
+        </div>
+      )}
 
       <button
         type="submit"

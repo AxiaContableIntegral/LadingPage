@@ -99,7 +99,7 @@ export const clients: Client[] = [
 
 
 export const contactInfo = {
-  address: 'Av. Corrientes 1250, Piso 6 — CABA, Argentina',
+  address: 'Remedios de Escalada 2425, M5521 Mendoza',
   phone: '+54 2622 68-5201',
   phoneHref: 'https://wa.me/542622685201',
   email: 'agustinh@axiacontableintegral.com',
